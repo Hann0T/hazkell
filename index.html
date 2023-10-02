@@ -67,7 +67,7 @@
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-0 scale-90"
                 >
-                    <div class="flex flex-col gap-6 w-[55%]">
+                    <div class="w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-2.5">
                             <h2 class="text-5xl font-title font-bold">Tu éxito comienza con la primera impresión.</h2>
                             <p class="text-2xl font-subtitle">Si tu negocio no está en linea, no existe.</p>
@@ -86,7 +86,7 @@
 
                 <!-- problem/solution page -->
                 <div 
-                    class="w-full h-full flex flex-col justify-center items-center"
+                    class="w-full h-full flex justify-between items-center gap-16"
                     x-data 
                     x-show.important="$store?.pages?.page == 'problem'" 
                     x-transition:enter="transition ease-out duration-300"
@@ -96,7 +96,153 @@
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-0 scale-90"
                 >
-                    <h2>Problem</h2>
+                    <div class="w-[45%] h-full flex justify-start items-center">
+                        <img src="./assets/img/money-monkey.png" class="h-full">
+                    </div>
+                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                        <div class="flex flex-col gap-3.5">
+                            <h2 class="text-[44px] leading-[44px] font-title font-bold">
+                                ¿<span class="uppercase text-primary">ventas</span> estancadas? ¿Falta de <span class="uppercase text-primary">seguidores</span>?
+                            </h2>
+                            <p class="text-2xl font-subtitle">Nos encargamos de conseguirlos y mantenerlos leales.</p>
+                            <p class="text-base font-paragraph">Con un enfoque específico en tu nicho, diseñamos estrategias personalizadas que te brindan resultados sostenibles y un crecimiento constante.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- social media managment -->
+                <div 
+                    class="w-full h-full flex justify-between items-center gap-16"
+                    x-data 
+                    x-show.important="$store?.pages?.page == 'social-media'" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                >
+                    <div class="w-[45%] h-full flex justify-start items-end">
+                        <img src="./assets/img/monkey-with-phone.png" class="h-fit">
+                    </div>
+                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                        <div class="flex flex-col gap-3.5">
+                            <h2 class="text-5xl font-title font-bold">
+                                Manejo de <span class="text-primary">redes sociales</span>
+                            </h2>
+                            <p class="text-base font-paragraph">
+                                Optimiza tu presencia en redes sociales con nuestro servicio especializado. Creamos estrategias, contenido cautivador y programación estratégica para conectar de manera efectiva con tu audiencia. ¡Potencia tu marca en las redes sociales y maximiza tu impacto en línea!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- photograph-video -->
+                <div 
+                    class="w-full h-full flex justify-between items-center gap-16"
+                    x-data 
+                    x-show.important="$store?.pages?.page == 'photograph-video'" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                >
+                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                        <div class="flex flex-col gap-3.5">
+                            <h2 class="text-5xl font-title font-bold">
+                                <span class="text-primary">Fotografía</span> y <span class="text-primary">video</span>
+                            </h2>
+                            <p class="text-base font-paragraph">
+                                Transformamos momentos en historias visuales cautivadoras. Nuestro equipo especializado en fotografía y video captura la esencia única de tu marca y proyectos. Desde imágenes impactantes hasta vídeos envolventes, damos vida a tu visión con creatividad y profesionalismo.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-[45%] h-full flex justify-start items-end">
+                        <img src="./assets/img/photo-monkey.png" class="h-fit">
+                    </div>
+                </div>
+
+                <!-- web dev -->
+                <div 
+                    class="w-full h-full flex justify-between items-center gap-16"
+                    x-data 
+                    x-show.important="$store?.pages?.page == 'web-dev'" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                >
+                    <div class="w-[45%] h-full flex justify-start items-end">
+                        <img src="./assets/img/laptop-monkey.png" class="h-fit">
+                    </div>
+                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                        <div class="flex flex-col gap-3.5">
+                            <h2 class="text-5xl font-title font-bold">
+                                Desarrollo <span class="text-primary">web</span>
+                            </h2>
+                            <p class="text-base font-paragraph">
+                                Convierte tu visión en una experiencia en línea. Nuestro equipo de desarrollo web crea sitios web funcionales y atractivos, adaptados a tus necesidades específicas. Desde diseños elegantes hasta funcionalidades avanzadas, te ayudamos a destacar en el vasto mundo digital.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- meta ads -->
+                <div 
+                    class="w-full h-full flex justify-between items-center gap-16"
+                    x-data 
+                    x-show.important="$store?.pages?.page == 'meta-ads'" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                >
+                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                        <div class="flex flex-col gap-3.5">
+                            <h2 class="text-5xl font-title font-bold">
+                                <span class="text-primary">Meta</span> ads
+                            </h2>
+                            <p class="text-base font-paragraph">
+                                Optimiza tu presencia en la web con nuestras estrategias de Meta Ads. Nos enfocamos en maximizar tu alcance y generar resultados con publicidad efectiva en plataformas clave. Desde la planificación hasta el análisis detallado, potenciamos tu impacto publicitario para impulsar tu negocio hacia el éxito digital.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-[45%] h-full flex justify-start items-end">
+                        <img src="./assets/img/monkey-megaphone.png" class="h-fit">
+                    </div>
+                </div>
+
+                <!-- contact -->
+                <div 
+                    class="w-full h-full flex justify-between items-center gap-16"
+                    x-data 
+                    x-show.important="$store?.pages?.page == 'contact'" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                >
+                    <div class="w-full flex flex-col justify-center items-center gap-6 p-4">
+                        <div class="flex flex-col gap-3.5">
+                            <h2 class="text-7xl font-title font-bold text-center">
+                                Aumenta tu presencia en redes
+                            </h2>
+                        </div>
+                        <button
+                            type="button"
+                            class="bg-primary rounded-lg flex justify-center items-center gap-4 w-full p-4 max-w-[568px]"
+                        >
+                            <span class="text-5xl font-bold">Conversemos</span>
+                        </button>
+                    </div>
                 </div>
 
             </section>
@@ -137,7 +283,7 @@
             })
 
             Alpine.store('pages', {
-                pages: ['load', 'home', 'problem'],
+                pages: ['load', 'home', 'problem', 'social-media', 'photograph-video', 'web-dev', 'meta-ads', 'contact'],
                 page: 'load',
      
                 init() {
