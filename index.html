@@ -37,19 +37,12 @@
             </div>
 
             <!-- center - main content -->
-            <section class="w-full h-full flex flex-col justify-center items-center">
+            <section class="w-full h-full overflow-y-scroll scrollbar-y snap-both snap-mandatory">
 
                 <!-- load page -->
                 <div 
-                    class="w-full h-full flex flex-col justify-center items-center"
+                    class="w-full h-full flex flex-col justify-center items-center snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'load'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <h1 class="text-8xl font-title font-bold">Hazkell</h1>
                     <p class="text-4xl font-subtitle font-regular">agencia de marketing y desarrollo</p>
@@ -57,15 +50,8 @@
 
                 <!-- home page -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'home'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-2.5">
@@ -86,15 +72,8 @@
 
                 <!-- problem/solution page -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'problem'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-[45%] h-full flex justify-start items-center">
                         <img src="./assets/img/money-monkey.png" class="h-full">
@@ -112,15 +91,8 @@
 
                 <!-- social media managment -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'social-media'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-[45%] h-full flex justify-start items-end">
                         <img src="./assets/img/monkey-with-phone.png" class="h-fit">
@@ -139,15 +111,8 @@
 
                 <!-- photograph-video -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'photograph-video'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
@@ -166,15 +131,8 @@
 
                 <!-- web dev -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'web-dev'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-[45%] h-full flex justify-start items-end">
                         <img src="./assets/img/laptop-monkey.png" class="h-fit">
@@ -193,15 +151,8 @@
 
                 <!-- meta ads -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'meta-ads'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
@@ -220,15 +171,8 @@
 
                 <!-- contact -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16"
+                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
                     x-data 
-                    x-show.important="$store?.pages?.page == 'contact'" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
                 >
                     <div class="w-full flex flex-col justify-center items-center gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
@@ -284,10 +228,11 @@
 
             Alpine.store('pages', {
                 pages: ['load', 'home', 'problem', 'social-media', 'photograph-video', 'web-dev', 'meta-ads', 'contact'],
-                page: 'load',
+                sections: [],
      
                 init() {
                     let container = document.querySelector('#container')
+                    this.sections = document.querySelectorAll('.content-section')
                     if (container) {
                       // IE9, Chrome, Safari, Opera
                       container.addEventListener('mousewheel', (e) => this.mouseWheelHandler(e), false);
@@ -298,13 +243,9 @@
                 },
 
                 mouseWheelHandler(e) {
-                    e = window.event || e
-                    let delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)))
-
-                    e.preventDefault()
-
-                    if(delta===-1) { return this.prevPage() }
-                    if(delta===1) { return this.nextPage() }
+                    // fix this
+                    let inView = [...this.sections].find(this.isScrolledIntoView)
+                    console.log(inView);
                 },
 
                 prevPage() {
@@ -317,6 +258,18 @@
                     let currentPageIndex = this.pages.findIndex(page => page == this.page)
                     if (currentPageIndex >= this.pages.length - 1) return
                     this.page = this.pages[currentPageIndex + 1]
+                },
+
+                isScrolledIntoView(el) {
+                    let rect = el.getBoundingClientRect()
+                    let elemTop = rect.top
+                    let elemBottom = rect.bottom
+
+                    // Only completely visible elements return true:
+                    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight)
+                    // Partially visible elements return true:
+                    //isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+                    return isVisible
                 }
             })
         })
