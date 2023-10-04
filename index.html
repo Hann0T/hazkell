@@ -5,104 +5,123 @@
     <meta charset="UTF-8">
     <link href="./dist/output.css" rel="stylesheet">
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+    <script>
+        if (
+            localStorage.getItem('color-theme') === 'dark' ||
+            (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
 <body>
-    <main class="h-screen flex justify-center items-center">
+    <main 
+        id="bg-animated"
+        class="h-screen flex justify-center items-center bg-dark dark:bg-light bg-contain"
+    >
         <section 
             id="container"
-            class="flex justify-between bg-dark text-light w-full max-w-[1280px] h-4/5 max-h-[517px] rounded-3xl px-2 py-4 gap-4"
+            class="flex flex-col md:flex-row justify-between bg-light dark:bg-dark text-dark dark:text-light w-full max-w-[1280px] h-screen md:h-4/5 md:max-h-[517px] md:rounded-3xl px-2 py-4 gap-4"
         >
             <!-- left section - theme, position indicator -->
-            <div class="px-1 flex flex-col justify-between items-center">
+            <div class="px-1 flex md:flex-col justify-between items-center">
                 <!-- position indicator -->
-                <div class="flex flex-col justify-center items-center gap-2.5">
-                    <span class="inline-block h-5 w-5 rounded-full bg-light"></span>
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-light"></span>
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-light"></span>
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-light"></span>
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-light"></span>
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-light"></span>
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-light"></span>
+                <div class="flex md:flex-col justify-center items-center gap-2.5">
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
+                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-dark dark:bg-light bullet-link"></span>
                 </div>
 
                 <!-- theme indicator -->
-                <div>
-                    <svg class="w-5 stroke-current text-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <button 
+                    id="theme-toggle"
+                    type="button"
+                >
+                    <svg class="w-5 stroke-current text-dark dark:text-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                     </svg>
-                </div>
+                </button>
             </div>
 
             <!-- center - main content -->
-            <section class="w-full h-full overflow-y-scroll scrollbar-y snap-both snap-mandatory">
+            <section 
+                id="main-container"
+                class="relative w-full h-full overflow-x-hidden overflow-y-scroll"
+            >
 
                 <!-- load page -->
                 <div 
-                    class="w-full h-full flex flex-col justify-center items-center snap-center content-section"
-                    x-data 
+                    id="load-page"
+                    class="w-full h-full flex flex-col justify-center items-center bg-light dark:bg-dark section-page snap-center"
                 >
-                    <h1 class="text-8xl font-title font-bold">Hazkell</h1>
-                    <p class="text-4xl font-subtitle font-regular">agencia de marketing y desarrollo</p>
+                    <h1 class="text-7xl md:text-8xl font-title font-bold">
+                        Haz<span class="text-primary">kell</span>
+                    </h1>
+                    <p class="text-2xl md:text-4xl text-center font-subtitle font-regular">Agencia de marketing y desarrollo</p>
                 </div>
 
                 <!-- home page -->
-                <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                <div
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                    <div class="h-auto sm:h-1/2 md:w-[55%] md:h-full flex flex-col justify-center gap-6 p-4">
                         <div class="flex flex-col gap-2.5">
-                            <h2 class="text-5xl font-title font-bold">Tu éxito comienza con la primera impresión.</h2>
-                            <p class="text-2xl font-subtitle">Si tu negocio no está en linea, no existe.</p>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-title font-bold">Tu éxito comienza con la primera impresión.</h2>
+                            <p class="text-base md:text-2xl font-subtitle">Si tu negocio no está en linea, no existe.</p>
                         </div>
                         <button
                             type="button"
-                            class="text-base bg-primary px-4 py-2 rounded-lg max-w-[254px]"
+                            class="text-base bg-primary px-4 py-2 rounded-lg w-fit md:max-w-[254px] text-light"
                         >
                             Conversemos
                         </button>
                     </div>
-                    <div class="w-[45%] h-full flex justify-end items-center">
-                        <img src="./assets/img/home.png" class="h-full">
+                    <div class="relative w-full h-1/2 md:w-[45%] md:h-full flex justify-end items-center">
+                        <img src="./assets/img/home.png" class="w-fit absolute h-fit bottom-0 md:static md:w-full h-full md:h-full">
                     </div>
                 </div>
 
                 <!-- problem/solution page -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-[45%] h-full flex justify-start items-center">
-                        <img src="./assets/img/money-monkey.png" class="h-full">
+                    <div class="relative order-2 md:order-1 h-1/2 w-full sm:h-[70%] md:w-[45%] md:h-full flex justify-center md:justify-start items-center">
+                        <img src="./assets/img/money-monkey.png" class="absolute h-fit bottom-0 md:static md:h-full">
                     </div>
-                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                    <div class="order-1 md:order-2 h-1/2 sm:h-[30%] md:h-auto md:w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
-                            <h2 class="text-[44px] leading-[44px] font-title font-bold">
+                            <h2 class="text-2xl sm:text-4xl md:text-[44px] leading-[44px] font-title font-bold">
                                 ¿<span class="uppercase text-primary">ventas</span> estancadas? ¿Falta de <span class="uppercase text-primary">seguidores</span>?
                             </h2>
-                            <p class="text-2xl font-subtitle">Nos encargamos de conseguirlos y mantenerlos leales.</p>
-                            <p class="text-base font-paragraph">Con un enfoque específico en tu nicho, diseñamos estrategias personalizadas que te brindan resultados sostenibles y un crecimiento constante.</p>
+                            <p class="text-base md:text-2xl font-subtitle">Nos encargamos de conseguirlos y mantenerlos leales.</p>
+                            <p class="text-sm sm:text-base md:text-xl font-paragraph">Con un enfoque específico en tu nicho, diseñamos estrategias personalizadas que te brindan resultados sostenibles y un crecimiento constante.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- social media managment -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-[45%] h-full flex justify-start items-end">
-                        <img src="./assets/img/monkey-with-phone.png" class="h-fit">
+                    <div class="relative order-2 md:order-1 w-full md:w-[45%] md:h-full flex justify-start items-end">
+                        <img src="./assets/img/monkey-with-phone.png" class="absolute bottom-0 h-fit md:static md:h-full md:max-h-[400px]">
                     </div>
-                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                    <div class="order-1 md:order-2 w-full md:w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
-                            <h2 class="text-5xl font-title font-bold">
+                            <h2 class="text-3xl md:text-5xl font-title font-bold">
                                 Manejo de <span class="text-primary">redes sociales</span>
                             </h2>
-                            <p class="text-base font-paragraph">
+                            <p class="text-base md:text-xl font-paragraph">
                                 Optimiza tu presencia en redes sociales con nuestro servicio especializado. Creamos estrategias, contenido cautivador y programación estratégica para conectar de manera efectiva con tu audiencia. ¡Potencia tu marca en las redes sociales y maximiza tu impacto en línea!
                             </p>
                         </div>
@@ -111,38 +130,38 @@
 
                 <!-- photograph-video -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                    <div class="w-full h-1/2 md:h-auto md:w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
-                            <h2 class="text-5xl font-title font-bold">
+                            <h2 class="text-3xl md:text-5xl font-title font-bold">
                                 <span class="text-primary">Fotografía</span> y <span class="text-primary">video</span>
                             </h2>
-                            <p class="text-base font-paragraph">
-                                Transformamos momentos en historias visuales cautivadoras. Nuestro equipo especializado en fotografía y video captura la esencia única de tu marca y proyectos. Desde imágenes impactantes hasta vídeos envolventes, damos vida a tu visión con creatividad y profesionalismo.
+                            <p class="text-base md:text-xl font-paragraph">
+                                <span class="inline-block w-full">Transformamos momentos en historias visuales cautivadoras.</span>
+                                Nuestro equipo especializado en fotografía y video captura la esencia única de tu marca y proyectos. Desde imágenes impactantes hasta vídeos envolventes, damos vida a tu visión con creatividad y profesionalismo.
                             </p>
                         </div>
                     </div>
-                    <div class="w-[45%] h-full flex justify-start items-end">
-                        <img src="./assets/img/photo-monkey.png" class="h-fit">
+                    <div class="relative w-full h-1/2 md:w-[45%] md:h-full flex justify-end items-end">
+                        <img src="./assets/img/photo-monkey.png" class="h-full static sm:absolute bottom-0 sm:h-fit md:static md:h-full">
                     </div>
                 </div>
 
                 <!-- web dev -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                    id="scrollHere"
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-[45%] h-full flex justify-start items-end">
-                        <img src="./assets/img/laptop-monkey.png" class="h-fit">
+                    <div class="relative order-2 md:order-1 w-full h-1/2 md:w-[45%] md:h-full flex justify-start items-end">
+                        <img src="./assets/img/laptop-monkey.png" class="absolute bottom-0 h-fit md:static md:h-full">
                     </div>
-                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                    <div class="order-1 md:order-2 w-full h-1/2 md:w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
-                            <h2 class="text-5xl font-title font-bold">
+                            <h2 class="text-3xl md:text-5xl font-title font-bold">
                                 Desarrollo <span class="text-primary">web</span>
                             </h2>
-                            <p class="text-base font-paragraph">
+                            <p class="text-base md:text-xl font-paragraph">
                                 Convierte tu visión en una experiencia en línea. Nuestro equipo de desarrollo web crea sitios web funcionales y atractivos, adaptados a tus necesidades específicas. Desde diseños elegantes hasta funcionalidades avanzadas, te ayudamos a destacar en el vasto mundo digital.
                             </p>
                         </div>
@@ -151,40 +170,39 @@
 
                 <!-- meta ads -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-[55%] flex flex-col gap-6 p-4">
+                    <div class="w-full h-1/2 md:w-[55%] flex flex-col gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
-                            <h2 class="text-5xl font-title font-bold">
+                            <h2 class="text-3xl md:text-5xl font-title font-bold">
                                 <span class="text-primary">Meta</span> ads
                             </h2>
-                            <p class="text-base font-paragraph">
+                            <p class="text-base md:text-xl font-paragraph">
                                 Optimiza tu presencia en la web con nuestras estrategias de Meta Ads. Nos enfocamos en maximizar tu alcance y generar resultados con publicidad efectiva en plataformas clave. Desde la planificación hasta el análisis detallado, potenciamos tu impacto publicitario para impulsar tu negocio hacia el éxito digital.
                             </p>
                         </div>
                     </div>
-                    <div class="w-[45%] h-full flex justify-start items-end">
-                        <img src="./assets/img/monkey-megaphone.png" class="h-fit">
+                    <div class="relative w-full h-1/2 md:w-[45%] md:h-full flex justify-end items-end">
+                        <img src="./assets/img/monkey-megaphone.png" class="absolute h-fit bottom-0 md:static h-full">
                     </div>
                 </div>
 
                 <!-- contact -->
                 <div 
-                    class="w-full h-full flex justify-between items-center gap-16 snap-center content-section"
-                    x-data 
+                    id="contact-section"
+                    class="w-full h-full flex flex-col md:flex-row justify-between items-center md:gap-16 section-page bg-light dark:bg-dark snap-center"
                 >
-                    <div class="w-full flex flex-col justify-center items-center gap-6 p-4">
+                    <div class="w-full h-full flex flex-col justify-center items-center gap-6 p-4">
                         <div class="flex flex-col gap-3.5">
-                            <h2 class="text-7xl font-title font-bold text-center">
+                            <h2 class="text-5xl md:text-7xl font-title font-bold text-center">
                                 Aumenta tu presencia en redes
                             </h2>
                         </div>
                         <button
                             type="button"
-                            class="bg-primary rounded-lg flex justify-center items-center gap-4 w-full p-4 max-w-[568px]"
+                            class="bg-primary rounded-lg flex justify-center items-center gap-4 w-full p-4 max-w-[568px] text-3xl md:text-5xl font-bold text-light"
                         >
-                            <span class="text-5xl font-bold">Conversemos</span>
+                            Conversemos
                         </button>
                     </div>
                 </div>
@@ -192,87 +210,140 @@
             </section>
 
             <!-- right section - links -->
-            <div class="px-1 flex flex-col justify-between items-center">
+            <div class="px-1 flex md:flex-col justify-between items-center">
                 <div>
                     lo
                 </div>
 
-                <div class="flex flex-col justify-center items-center gap-3">
+                <div class="flex md:flex-col justify-center items-center gap-3">
                     <!-- mail -->
-                    <svg class="w-5 stroke-current text-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg>
+                    <a href="mailto:hazkellinfo@gmail.com">
+                        <svg class="w-5 stroke-current text-dark dark:text-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                    </a>
 
                     <!-- facebook -->
-                    <svg class="w-2.5 h-4 fill-current text-light" fill="none"><path d="m8.223 9 .445-2.896H5.889V4.225c0-.792.388-1.564 1.633-1.564h1.263V.196S7.638 0 6.543 0C4.254 0 2.759 1.387 2.759 3.897v2.207H.215V9H2.76v7h3.13V9h2.334Z"/></svg>
+                    <a href="https://www.facebook.com/people/Hazkell-Agency/61551242012505/" target="_blank">
+                        <svg class="w-2.5 h-4 fill-current text-dark dark:text-light" fill="none"><path d="m8.223 9 .445-2.896H5.889V4.225c0-.792.388-1.564 1.633-1.564h1.263V.196S7.638 0 6.543 0C4.254 0 2.759 1.387 2.759 3.897v2.207H.215V9H2.76v7h3.13V9h2.334Z"/></svg>
+                    </a>
 
                     <!-- whastapp -->
-                    <svg class="fill-current text-light" width="15" height="15" fill="none"><path d="M12.753 2.18A7.377 7.377 0 0 0 7.497 0a7.441 7.441 0 0 0-6.442 11.15L0 15l3.94-1.035a7.41 7.41 0 0 0 3.553.904h.004c4.095 0 7.503-3.334 7.503-7.433 0-1.985-.844-3.85-2.247-5.256ZM7.497 13.617c-1.112 0-2.2-.298-3.148-.86l-.224-.134-2.337.613.623-2.28-.148-.235a6.158 6.158 0 0 1-.944-3.288A6.187 6.187 0 0 1 7.5 1.256c1.65 0 3.2.642 4.366 1.811 1.165 1.168 1.882 2.719 1.878 4.37 0 3.408-2.842 6.18-6.247 6.18Zm3.388-4.627c-.184-.094-1.098-.542-1.269-.603-.17-.063-.295-.093-.418.094-.124.188-.48.603-.59.73-.107.124-.217.14-.402.047-1.091-.546-1.808-.975-2.527-2.21-.191-.328.19-.305.545-1.015.06-.123.03-.23-.016-.324-.047-.094-.419-1.008-.573-1.38-.15-.361-.305-.311-.418-.318-.108-.007-.232-.007-.355-.007a.688.688 0 0 0-.496.231c-.17.188-.65.637-.65 1.55 0 .915.667 1.799.757 1.923.094.123 1.31 1.998 3.174 2.805 1.179.51 1.641.553 2.23.466.358-.054 1.098-.449 1.252-.884.155-.435.155-.807.108-.884-.044-.084-.168-.13-.352-.221Z"/></svg>
+                    <a href="https://api.whatsapp.com/send?phone=924768654" target="_blank">
+                        <svg class="fill-current text-dark dark:text-light" width="15" height="15" fill="none"><path d="M12.753 2.18A7.377 7.377 0 0 0 7.497 0a7.441 7.441 0 0 0-6.442 11.15L0 15l3.94-1.035a7.41 7.41 0 0 0 3.553.904h.004c4.095 0 7.503-3.334 7.503-7.433 0-1.985-.844-3.85-2.247-5.256ZM7.497 13.617c-1.112 0-2.2-.298-3.148-.86l-.224-.134-2.337.613.623-2.28-.148-.235a6.158 6.158 0 0 1-.944-3.288A6.187 6.187 0 0 1 7.5 1.256c1.65 0 3.2.642 4.366 1.811 1.165 1.168 1.882 2.719 1.878 4.37 0 3.408-2.842 6.18-6.247 6.18Zm3.388-4.627c-.184-.094-1.098-.542-1.269-.603-.17-.063-.295-.093-.418.094-.124.188-.48.603-.59.73-.107.124-.217.14-.402.047-1.091-.546-1.808-.975-2.527-2.21-.191-.328.19-.305.545-1.015.06-.123.03-.23-.016-.324-.047-.094-.419-1.008-.573-1.38-.15-.361-.305-.311-.418-.318-.108-.007-.232-.007-.355-.007a.688.688 0 0 0-.496.231c-.17.188-.65.637-.65 1.55 0 .915.667 1.799.757 1.923.094.123 1.31 1.998 3.174 2.805 1.179.51 1.641.553 2.23.466.358-.054 1.098-.449 1.252-.884.155-.435.155-.807.108-.884-.044-.084-.168-.13-.352-.221Z"/></svg>
+                    </a>
 
                     <!-- instagram -->
-                    <svg class="fill-current text-light" width="17" height="18" fill="none"><g clip-path="url(#a)"><path d="M8.504 4.957a4.033 4.033 0 0 0-4.04 4.04 4.033 4.033 0 0 0 4.04 4.039 4.033 4.033 0 0 0 4.04-4.04 4.033 4.033 0 0 0-4.04-4.039Zm0 6.666a2.63 2.63 0 0 1-2.626-2.627A2.629 2.629 0 0 1 8.504 6.37a2.629 2.629 0 0 1 2.626 2.626 2.63 2.63 0 0 1-2.626 2.627Zm5.147-6.831a.94.94 0 0 1-.943.942.942.942 0 1 1 .942-.942Zm2.675.956c-.06-1.262-.348-2.38-1.273-3.301-.92-.921-2.039-1.21-3.3-1.273-1.302-.074-5.2-.074-6.501 0-1.259.06-2.377.348-3.301 1.27-.925.92-1.21 2.038-1.273 3.3-.074 1.301-.074 5.2 0 6.5.06 1.263.348 2.381 1.273 3.302.924.921 2.039 1.21 3.3 1.273 1.302.074 5.2.074 6.501 0 1.262-.06 2.38-.348 3.301-1.273.921-.921 1.21-2.039 1.273-3.301.074-1.3.074-5.196 0-6.497Zm-1.68 7.893a2.659 2.659 0 0 1-1.498 1.497c-1.037.412-3.498.317-4.644.317s-3.61.091-4.644-.317a2.66 2.66 0 0 1-1.498-1.497c-.411-1.037-.316-3.498-.316-4.645 0-1.146-.092-3.61.316-4.644.274-.689.805-1.22 1.498-1.497 1.037-.412 3.498-.317 4.644-.317s3.61-.091 4.644.317c.689.274 1.22.805 1.498 1.497.41 1.037.316 3.498.316 4.644 0 1.147.095 3.611-.316 4.645Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M.625 0h15.75v18H.625z"/></clipPath></defs></svg>
+                    <a href="#" target="_blank">
+                        <svg class="fill-current text-dark dark:text-light" width="17" height="18" fill="none"><g clip-path="url(#a)"><path d="M8.504 4.957a4.033 4.033 0 0 0-4.04 4.04 4.033 4.033 0 0 0 4.04 4.039 4.033 4.033 0 0 0 4.04-4.04 4.033 4.033 0 0 0-4.04-4.039Zm0 6.666a2.63 2.63 0 0 1-2.626-2.627A2.629 2.629 0 0 1 8.504 6.37a2.629 2.629 0 0 1 2.626 2.626 2.63 2.63 0 0 1-2.626 2.627Zm5.147-6.831a.94.94 0 0 1-.943.942.942.942 0 1 1 .942-.942Zm2.675.956c-.06-1.262-.348-2.38-1.273-3.301-.92-.921-2.039-1.21-3.3-1.273-1.302-.074-5.2-.074-6.501 0-1.259.06-2.377.348-3.301 1.27-.925.92-1.21 2.038-1.273 3.3-.074 1.301-.074 5.2 0 6.5.06 1.263.348 2.381 1.273 3.302.924.921 2.039 1.21 3.3 1.273 1.302.074 5.2.074 6.501 0 1.262-.06 2.38-.348 3.301-1.273.921-.921 1.21-2.039 1.273-3.301.074-1.3.074-5.196 0-6.497Zm-1.68 7.893a2.659 2.659 0 0 1-1.498 1.497c-1.037.412-3.498.317-4.644.317s-3.61.091-4.644-.317a2.66 2.66 0 0 1-1.498-1.497c-.411-1.037-.316-3.498-.316-4.645 0-1.146-.092-3.61.316-4.644.274-.689.805-1.22 1.498-1.497 1.037-.412 3.498-.317 4.644-.317s3.61-.091 4.644.317c.689.274 1.22.805 1.498 1.497.41 1.037.316 3.498.316 4.644 0 1.147.095 3.611-.316 4.645Z"/></g><defs><clipPath id="a"><path fill="#fff" d="M.625 0h15.75v18H.625z"/></clipPath></defs></svg>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.store('darkMode', {
-                on: false,
-     
-                toggle() {
-                    this.on = ! this.on
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            ScrollTrigger.defaults({
+                scroller: "#main-container"
+            });
+
+
+            const mainContainer = document.querySelector("#main-container");
+            const firstElem = document.querySelector("#load-page");
+
+            const sections =  gsap.utils.toArray(".section-page");
+            const bullets = gsap.utils.toArray(".bullet-link");
+
+            //let tl = new TimelineMax({repeat:-1});
+
+            //tl.to('#bg-animated', 30, {
+            //    backgroundPosition: "0 600px",
+            //    ease: Linear.easeNone,
+            //    onRefresh: self => self.progress && self.animation.progress(1),
+            //});
+
+            function goToSection(i, anim) {
+                if(i <= 0) i = 0;
+
+                mainContainer.scrollTo({
+                    top: sections[i].offsetTop,
+                    left: 0,
+                    behavior: 'smooth'
+                })
+
+                if(anim) {
+                    anim.restart();
                 }
-            })
+            }
 
-            Alpine.store('pages', {
-                pages: ['load', 'home', 'problem', 'social-media', 'photograph-video', 'web-dev', 'meta-ads', 'contact'],
-                sections: [],
-     
-                init() {
-                    let container = document.querySelector('#container')
-                    this.sections = document.querySelectorAll('.content-section')
-                    if (container) {
-                      // IE9, Chrome, Safari, Opera
-                      container.addEventListener('mousewheel', (e) => this.mouseWheelHandler(e), false);
-                      // Firefox
-                      container.addEventListener('DOMMouseScroll', (e) => this.mouseWheelHandler(e), false);
-                      // IE 6~8
-                    } else container.attachEvent('onmousewheel', (e) => this.mouseWheelHandler(e));
-                },
+            sections.forEach((panel, i) => {
+                gsap.to(bullets[i], {
+                    width: '1.25rem',
+                    height: '1.25rem',
+                    ease: "none",
+                    duration: 0.2,
+                    //stagger: 0.5,
+                    scrollTrigger: {
+                        trigger: panel,
+                        toggleActions: "play reverse play reverse",
+                    }
+                });
 
-                mouseWheelHandler(e) {
-                    // fix this
-                    let inView = [...this.sections].find(this.isScrolledIntoView)
-                    console.log(inView);
-                },
+                ScrollTrigger.create({
+                    trigger: panel,
+                    onEnter: () => goToSection(i)
+                });
 
-                prevPage() {
-                    let currentPageIndex = this.pages.findIndex(page => page == this.page)
-                    if (currentPageIndex - 1 <= 0) return this.page = 'load'
-                    this.page = this.pages[currentPageIndex - 1]
-                },
+                ScrollTrigger.create({
+                    trigger: panel,
+                    start: "bottom bottom",
+                    onEnterBack: () => goToSection(i),
+                });
+            });
 
-                nextPage() {
-                    let currentPageIndex = this.pages.findIndex(page => page == this.page)
-                    if (currentPageIndex >= this.pages.length - 1) return
-                    this.page = this.pages[currentPageIndex + 1]
-                },
-
-                isScrolledIntoView(el) {
-                    let rect = el.getBoundingClientRect()
-                    let elemTop = rect.top
-                    let elemBottom = rect.bottom
-
-                    // Only completely visible elements return true:
-                    let isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight)
-                    // Partially visible elements return true:
-                    //isVisible = elemTop < window.innerHeight && elemBottom >= 0;
-                    return isVisible
+            gsap.to(bullets[bullets.length - 1], {
+                width: '1.25rem',
+                height: '1.25rem',
+                ease: "none",
+                duration: 0.2,
+                //stagger: 0.5,
+                scrollTrigger: {
+                    trigger: '#contact-section',
+                    toggleActions: "play reverse play reverse",
                 }
-            })
+            });
         })
+    </script>
+
+    <script>
+        let themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+
+                // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+
+        });
     </script>
 </body>
 </html>
